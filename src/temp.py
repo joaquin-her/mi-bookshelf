@@ -1,18 +1,16 @@
+def buscar_mejor_subarray(arr, inicio=0):
+    if len(arr) == 1:
+        # Caso base: si solo hay un elemento, el mejor subarray es ese elemento
+        return arr, [inicio, inicio + 1], arr[0]
 
-def max_subarray(array):
-	array, indices, suma_maxima = buscar_mejor_subarray(array,0)
-	return array[indices[0]:indices[1]]
+    medio = len(arr) // 2
 
-def buscar_mejor_subarray(arr, inicio):
-	if len(arr) == 1:
-		indices = [0,1]
-		return arr, indices, arr[0]
-	medio = len(arr)//2
+    # Llamadas recursivas para los subarrays izquierdo y derecho
     arr_i, indices_i, suma_izq = buscar_mejor_subarray(arr[:medio], inicio)
     arr_d, indices_d, suma_der = buscar_mejor_subarray(arr[medio:], inicio + medio)
 
+    # Encontrar la mejor suma cruzando la mitad
     suma_centro, a, b = suma_maxima_cruzada(arr, medio, inicio)
-
 
     # Comparar los tres casos: suma izquierda, derecha y cruzada
     if suma_centro > suma_der and suma_centro > suma_izq:
@@ -30,7 +28,7 @@ def buscar_mejor_subarray(arr, inicio):
 
     return mejor_subarray, indices, suma_maxima
 
-    
+
 def suma_maxima_cruzada(arr, medio, inicio):
     # Calcular la mejor suma hacia la izquierda desde la mitad
     suma_izquierda = float('-inf')
@@ -54,5 +52,5 @@ def suma_maxima_cruzada(arr, medio, inicio):
 
     # Devolver la suma máxima cruzada y los índices
     return suma_izquierda + suma_derecha, mejor_izquierda + inicio, mejor_derecha + 1 + inicio
-
+    
 print([-2, 1, -3, 4, -1, 2, 1, -5, 4], max_subarray([-2, 1, -3, 4, -1, 2, 1, -5, 4]))
