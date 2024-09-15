@@ -11,6 +11,9 @@ def buscar_mejor_subarray(arr):
 	arr_i, indices_i, suma_izq = buscar_mejor_subarray(arr[:medio])
 	arr_d, indices_d, suma_der = buscar_mejor_subarray(arr[medio:])
 	suma_centro =suma_izq + suma_der + mi_sum(arr_i[indices_i[1]:] + arr_d[:indices_d[0]])
+	
+	print(arr_i, suma_izq, arr_i+arr_d, suma_der, arr_d)
+
 	if suma_centro > suma_der and suma_centro > suma_izq :
 		a = indices_i[0]
 		b = medio + indices_d[1]
@@ -23,6 +26,10 @@ def buscar_mejor_subarray(arr):
 		a = indices_i[0]
 		b = indices_i[1]
 		suma_maxima = suma_izq	
+	
+	print(indices_i, indices_d)
+
+	print(a,b, '\n')
 	indices = [a, b]
 	return arr, indices, suma_maxima
 
@@ -33,4 +40,4 @@ def mi_sum(array):
 	return c
 
 
-#print(max_subarray([-44, 82, -60, -75, -81, 17, 85]))
+print([-2, 1, -3, 4, -1, 2, 1, -5, 4], max_subarray([-2, 1, -3, 4, -1, 2, 1, -5, 4]))
