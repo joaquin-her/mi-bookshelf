@@ -1,45 +1,38 @@
-from main import max_subarray
-def test_sin_negativos():
-	a = [5, 3, 2] 
-	r = max_subarray(a)
-	assert [5, 3, 2] == r 
+from main import asignar_mafias, ordenar_finalizacion_ascendente
 
-def test_con_negativo_al_final():
-	a = [5, 3, 2, 4, -1] 
-	r = max_subarray(a)
-	assert [5, 3, 2, 4] == r 
-	 
-def test_con_negativo_al_final_y_al_medio():
-	a = [5, -4, 2, 4, -1]
-	r = max_subarray(a)
-	assert [5, -4, 2, 4] == r 
-	 
-def test_con_negativo_al_medio():
-	a = [5, -4, 2, 4]
-	r = max_subarray(a)
-	assert [5, -4, 2, 4] == r 
-	 
-def test_ejemplo4():
-	a = [-3, 4, -1, 2, 1, -5] 
-	r = max_subarray(a)
-	assert [4, -1, 2, 1] == r 
+def test_ordenar_3_horarios_de_fin_ascendentemente():
+    a = [(1,2),(3,4),(0,1)]
+    r = ordenar_finalizacion_ascendente(a)
+    assert r == [(0,1),(1,2),(3,4)]
 
-def test_ejemplo5():
-	a = [5, 3, -5, 4, -1]
-	r = max_subarray(a)
-	assert [5, 3] == r 
+def test_dos_mafias_no_superpuestas():
+    a = [[0,2],[2,4]]
+    r = asignar_mafias(a)
+    assert len(r) == 2
 
-def test_negativos_menor_en_el_centro():
-	a = [-2,-3,-1,-2,-4]
-	r = max_subarray(a)
-	assert [-1] == r 
+# def test_asignar_varias_mafias():
 
-def test_todos_negativos():
-	a = [-1,-2,-3,-4,-5]
-	r = max_subarray(a)
-	assert [-1] == r 
+def test_sin_mafias():
+    a = []
+    r = asignar_mafias(a)
+    assert r == []
 
-def test_intercalados():
-	a = [-1,1,-2,2,-3,3,-4,4,-5,5]
-	r = max_subarray(a)
-	assert [5] == r 
+# def test_asignar_mafias_evitar_mas_corta():
+
+# def test_asignar_mafias_evitar_primera(): 
+
+# def test_asignar_3_mafias():
+
+def test_dos_pedidos_inicia_km0():
+    a = [(5,10),(0,3),(0,5)] 
+    r = asignar_mafias(a)
+    assert r == [(0,3),(5,10)]
+
+def test_un_pedido_inicia_km_0():
+    a = [(0,10),(5,10)] # debe incluir mas elementos
+    r = asignar_mafias(a)
+    assert r == [(0,10)]
+
+# def test_varias_asignar_mafias_evitar_colisiones():
+#     a = # un array con elemementos que dependiendo el orden, se sobreponen
+#     assert len(r) == 4
